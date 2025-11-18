@@ -32,9 +32,15 @@ function dVdt = string_rate_func01(t,V,string_params)
     dUfdt = dUfdt_func(t);
     
     %compute acceleration
+    d2Udt2 = zeros(1,n);
+
+    for i = 1:n
+        d2Udt2(i) = (Tf/dx) * (U(i) - 2*U(i+1) + U(i+2));
+    end
     
-    d2Udt2 = (Tf/dx) * (%u_(i-1) - 2u_i + u_(i+1)) 
-    
+    d2Udt2 = d2Udt2 ./string_params.M ./ string_params.n ; % how get m1m2m3?
+
+
     %assemble state derivative
     
     dVdt = [dUdt;d2Udt2];
