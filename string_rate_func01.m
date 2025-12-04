@@ -32,6 +32,11 @@ function dVdt = string_rate_func01(t,V,string_params)
     dUfdt = dUfdt_func(t);
     
     %compute acceleration
+    d2Udt2 = zeros(1,n);
+
+    for i = 1:n
+        d2Udt2(i) = (Tf/dx) * (U(i) - 2*U(i+1) + U(i+2));
+    end
     
     d2Udt2 = (n/M)*((Tf/dx) * (u_(i-1) - 2*u_i + u_(i+1)) + (c/dx)*(dUdt(i-1) - 2*dUdt + dUdt(i+1)) ); 
     
