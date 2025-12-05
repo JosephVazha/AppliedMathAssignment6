@@ -6,7 +6,7 @@ function discrete_modal_analysis(string_params)
     % damping_coeff = string_params.c;
     amplitude = string_params.au;
     Uf_func = string_params.Uf_func;
-    tspan = [0 30];
+    tspan = 0:0.01:30;
 
     %compute mode shapes
     [mode_shapes, natural_freqs] = compute_string_modes(string_params);

@@ -42,7 +42,7 @@ function dVdt = string_rate_func01(t,V,string_params)
         d2Udt2(i) = (Tf/dx) * (U(i-1) - 2*U(i) + U(i+1)) + (c/dx)*(dUdt(i-1) - 2*dUdt(i) + dUdt(i+1));
     end
     
-    d2Udt2(4) = (Tf/dx) * (U(n-1) - 2*U(n) + Uf) + (c/dx)*(dUdt(n-1) - 2*dUdt(n) + dUfdt);
+    d2Udt2(n) = (Tf/dx) * (U(n-1) - 2*U(n) + Uf) + (c/dx)*(dUdt(n-1) - 2*dUdt(n) + dUfdt);
     
     dVdt = [dUdt; d2Udt2];
 end
