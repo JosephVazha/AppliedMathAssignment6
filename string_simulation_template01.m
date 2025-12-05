@@ -1,20 +1,20 @@
 function string_simulation_template01()
     num_masses = 3;
-    % total_mass = 1;
-    % tension_force = 10;
-    % string_length = 5;
-    % damping_coeff = .1;
-    % % 
-    % dx = string_length/(num_masses+1);
-    % 
-    % amplitude_Uf = 0.5;
-    % omega_Uf = pi/2;
-    % 
-    % %list of x points (including the two endpoints)
-    % xlist = linspace(0,string_length,num_masses+2);
-    % 
-    % Uf_func = @(t_in) amplitude_Uf*cos(omega_Uf*t_in);
-    % dUfdt_func = @(t_in) -omega_Uf*amplitude_Uf*sin(omega_Uf*t_in);
+    total_mass = 1;
+    tension_force = 10;
+    string_length = 5;
+    damping_coeff = .1;
+    
+    dx = string_length/(num_masses+1);
+
+    amplitude_Uf = 0.5;
+    omega_Uf = pi/2;
+
+    %list of x points (including the two endpoints)
+    xlist = linspace(0,string_length,num_masses+2);
+
+    Uf_func = @(t_in) amplitude_Uf*cos(omega_Uf*t_in);
+    dUfdt_func = @(t_in) -omega_Uf*amplitude_Uf*sin(omega_Uf*t_in);
 
     %generate the struct
     string_params = stringparams1();

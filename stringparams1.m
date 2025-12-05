@@ -3,7 +3,7 @@ function string_params = stringparams1()
     total_mass = 4;
     tension_force = 10;
     string_length = 5;
-    damping_coeff = .1;
+    damping_coeff = .05;
 
     dx = string_length/(num_masses+1);
     amplitude_Uf = 1;
