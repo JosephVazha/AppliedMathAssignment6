@@ -43,5 +43,6 @@ function dVdt = string_rate_func01(t,V,string_params)
     end
     
     d2Udt2(4) = (Tf/dx) * (U(n-1) - 2*U(n) + Uf) + (c/dx)*(dUdt(n-1) - 2*dUdt(n) + dUfdt);
+    
     dVdt = [dUdt; d2Udt2];
 end

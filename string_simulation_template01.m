@@ -17,14 +17,22 @@ function string_simulation_template01()
     dUfdt_func = @(t_in) -omega_Uf*amplitude_Uf*sin(omega_Uf*t_in);
 
     %generate the struct
-    string_params = stringparams1();
+    string_params = struct();
+    string_params.n = num_masses;
+    string_params.M = total_mass;
+    string_params.Uf_func = Uf_func;
+    string_params.dUfdt_func = dUfdt_func;
+    string_params.Tf = tension_force;
+    string_params.L = string_length;
+    string_params.c = damping_coeff;
+    string_params.dx = dx;
 
     %load string_params into rate function
     my_rate_func = @(t_in,V_in) string_rate_func01(t_in,V_in,string_params);
 
     %initial conditions
-    U0 = zeros(num_masses);
-    dUdt0 = zeros(num_masses);
+    U0 = zeros(num_masses, 1);
+    dUdt0 = zeros(num_masses, 1);
     V0 = [U0;dUdt0];
 
     tspan = [0 20];
@@ -43,8 +51,8 @@ function string_simulation_template01()
     
         u_left = 0;
         u_right = Uf_func(current_t);
-    
-        u_full = [u_left, current_U, u_right];
+        
+        u_full = [u_left; current_U; u_right];
     
         plot(xlist, u_full, '-o', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
         ylim([-amplitude_Uf*2, amplitude_Uf*2]); 
@@ -54,5 +62,6 @@ function string_simulation_template01()
         ylabel('Displacement u');
         grid on;
         drawnow;
+
     end
 end
