@@ -2,11 +2,11 @@ function string_simulation(string_params, U0, dUdt0, tspan)
 
     % num_masses = %your code here
     % total_mass = %your code here
-    % tension_force = %your code here
-    % string_length = %your code here
-    % damping_coeff = %your code here
-    % amplitude_Uf = %your code here
-    % omega_Uf = %your code here
+    tension_force = %your code here
+    string_length = %your code here
+    damping_coeff = %your code here
+    amplitude_Uf = %your code here
+    omega_Uf = %your code here
 
     dx = string_length/(num_masses+1);
     
@@ -36,7 +36,7 @@ function string_simulation(string_params, U0, dUdt0, tspan)
     % tspan = %your code here
 
     %run the integration
-    [tlist,Vlist] = your_integrator(my_rate_func,tspan,V0,...);
+    [tlist,Vlist] = ode45(my_rate_func,tspan,V0);
     %your code to generate an animation of the system
 
 end
