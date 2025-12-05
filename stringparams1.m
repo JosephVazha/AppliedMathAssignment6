@@ -1,8 +1,8 @@
 function string_params = stringparams1()
-    num_masses = 4;
+    num_masses = 5;
     total_mass = 4;
     tension_force = 10;
-    string_length = 10;
+    string_length = 5;
     damping_coeff = .1;
 
     dx = string_length/(num_masses+1);
@@ -22,5 +22,7 @@ function string_params = stringparams1()
     string_params.L = string_length;
     string_params.c = damping_coeff;
     string_params.dx = dx;
+    string_params.au = amplitude_Uf;
+    string_params.ou = omega_Uf;
  
 end

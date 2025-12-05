@@ -42,23 +42,23 @@ function string_simulation_template01()
 
     figure();
     for k = 1:length((tlist))
-    %your code to generate an animation of the system
+        %your code to generate an animation of the system
+        
+        current_t = tlist(k);
+        current_U = Vlist(k, 1:num_masses)';
     
-    current_t = tlist(k);
-    current_U = Vlist(k, 1:num_masses)';
-
-    u_left = 0;
-    u_right = Uf_func(current_t);
-
-    u_full = [u_left, current_U, u_right];
-
-    plot(xlist, u_full, '-o', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
-    ylim([-amplitude_Uf*2, amplitude_Uf*2]); 
-    xlim([0-string_length*1.25, string_length*1.25]);
-    title(['Time: ', num2str(current_t, '%.2f')]);
-    xlabel('Position x');
-    ylabel('Displacement u');
-    grid on;
-    drawnow;
+        u_left = 0;
+        u_right = Uf_func(current_t);
+    
+        u_full = [u_left, current_U, u_right];
+    
+        plot(xlist, u_full, '-o', 'LineWidth', 1.5, 'MarkerFaceColor', 'b');
+        ylim([-amplitude_Uf*2, amplitude_Uf*2]); 
+        xlim([0-string_length*1.25, string_length*1.25]);
+        title(['Time: ', num2str(current_t, '%.2f')]);
+        xlabel('Position x');
+        ylabel('Displacement u');
+        grid on;
+        drawnow;
     end
 end
