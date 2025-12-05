@@ -20,16 +20,12 @@ function [M_mat,K_mat] = construct_2nd_order_matrices(string_params)
     %construct the nxn discrete laplacian matrix
     n = string_params.n;
     I_n = eye(n); % build the nxn identity matrix
-    my_Laplacian = circshift(I_n,[0,1]);
-    my_Laplacian(end,1) = 0;
+    my_Laplacian = circshift(I_n,1) + circshift(I_n,-1) - 2*I_n;
 
-    I_n = eye(n);
-    my_Laplacian_temp = circshift(I_n,[1,0]);
-    my_Laplacian_temp(1,end) = 0;
-
-    I_n = -2*eye(n);
-
-    my_Laplacian = my_Laplacian+my_Laplacian_temp+I_n;
+    %doing this as subtracting deals with the weird edge cases
+    %that occur when n=1 and n=2
+    my_Laplacian(1,end) = my_Laplacian(1,end)-1; %delete unwanted 1 in top right corner
+    my_Laplacian(end,1) = my_Laplacian(end,1)-1; %delete unwanted 1 in bottom right corner
 
     %setup the mass and stiffness matrices
 
