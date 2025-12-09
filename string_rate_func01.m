@@ -36,13 +36,18 @@ function dVdt = string_rate_func01(t,V,string_params)
     d2Udt2 = zeros(n,1);
     m = M/n;
     
-    d2Udt2(1) = (Tf/dx) * (0 - 2*U(1) + U(2)) + (c/dx)*(0 - 2*dUdt(1) + dUdt(2));
+   net_force_1 = (Tf/dx) * (0 - 2*U(1) + U(2)) + (c/dx)*(0 - 2*dUdt(1) + dUdt(2));
+    d2Udt2(1) = net_force_1 / m; 
 
+    %interior masses
     for i = 2:n-1
-        d2Udt2(i) = (Tf/dx) * (U(i-1) - 2*U(i) + U(i+1)) + (c/dx)*(dUdt(i-1) - 2*dUdt(i) + dUdt(i+1));
+        net_force_i = (Tf/dx) * (U(i-1) - 2*U(i) + U(i+1)) + (c/dx)*(dUdt(i-1) - 2*dUdt(i) + dUdt(i+1));
+        d2Udt2(i) = net_force_i / m;
     end
     
-    d2Udt2(n) = (Tf/dx) * (U(n-1) - 2*U(n) + Uf) + (c/dx)*(dUdt(n-1) - 2*dUdt(n) + dUfdt);
+    %final mass
+    net_force_n = (Tf/dx) * (U(n-1) - 2*U(n) + Uf) + (c/dx)*(dUdt(n-1) - 2*dUdt(n) + dUfdt);
+    d2Udt2(n) = net_force_n / m;
     
     dVdt = [dUdt; d2Udt2];
 end
