@@ -17,8 +17,6 @@ function wave_simulation(string_params)
     %calculate wave speed
     c = sqrt(tension_force/(total_mass/string_length));
 
-    disp(['Calculated Wave Speed c = ', num2str(c), ' m/s']);
-
     pulse_width = 1.0;
     pulse_height = 1.0;
 

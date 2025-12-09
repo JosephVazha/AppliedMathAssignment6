@@ -1,8 +1,8 @@
 function string_params = stringparams1()
-    num_masses = 5;
+    num_masses = 200;
     total_mass = 4;
-    tension_force = 10;
-    string_length = 5;
+    tension_force = 2;
+    string_length = 7;
     damping_coeff = .05;
 
     dx = string_length/(num_masses+1);
